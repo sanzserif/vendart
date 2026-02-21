@@ -1,6 +1,6 @@
 # Vendart
 
-Vendart is a Flutter application that implements Feature-First Clean Architecture. This project is structured to separate concerns and promote maintainability, scalability, and testability.
+Vendart is a Flutter based POS application that implements Feature-First Clean Architecture. This project is structured to separate concerns and promote maintainability, scalability, and testability.
 
 ## Project Structure
 

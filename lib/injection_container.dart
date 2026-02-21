@@ -2,6 +2,11 @@ import 'package:get_it/get_it.dart';
 
 import 'core/network/network_info.dart';
 import 'core/utils/input_converter.dart';
+import 'features/counter/data/repositories/counter_repository_impl.dart';
+import 'features/counter/domain/repositories/counter_repository.dart';
+import 'features/counter/domain/usecases/decrement_counter.dart';
+import 'features/counter/domain/usecases/increment_counter.dart';
+import 'features/counter/presentation/bloc/counter_bloc.dart';
 import 'features/pos_checkout/data/datasources/checkout_local_datasource.dart';
 import 'features/pos_checkout/data/repositories/checkout_repository_impl.dart';
 import 'features/pos_checkout/domain/repositories/checkout_repository.dart';
@@ -15,6 +20,25 @@ final sl = GetIt.instance;
 
 /// Initialize all dependencies
 Future<void> init() async {
+  //! Features - Counter
+  // Bloc
+  sl.registerFactory(
+    () => CounterBloc(
+      incrementCounter: sl(),
+      decrementCounter: sl(),
+      repository: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => IncrementCounter(sl()));
+  sl.registerLazySingleton(() => DecrementCounter(sl()));
+
+  // Repository
+  sl.registerLazySingleton<CounterRepository>(
+    () => CounterRepositoryImpl(),
+  );
+
   //! Features - POS Checkout
   // Bloc
   sl.registerFactory(

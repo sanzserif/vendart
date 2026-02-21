@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/theme/theme_service.dart';
-import 'features/pos_checkout/pos_checkout.dart';
+import 'features/counter/counter.dart';
 import 'injection_container.dart';
 
 /// Main application widget
@@ -20,8 +20,8 @@ class VendartApp extends StatelessWidget {
       darkTheme: ThemeService.darkTheme(),
       themeMode: ThemeMode.system,
       home: BlocProvider(
-        create: (_) => sl<CheckoutBloc>()..add(const LoadCheckoutItems()),
-        child: const CheckoutPage(),
+        create: (_) => sl<CounterBloc>()..add(const CounterStarted()),
+        child: const CounterPage(),
       ),
     );
   }
